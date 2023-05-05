@@ -1,32 +1,42 @@
-class Viajeros:
+class Viajero:
     __num = ""
     __dni = ""
     __nombre = ""
     __apellido = ""
     __millas_acum = ""
-    def __init__ (self, num, dni, nombre, apellido, millas_acum):
+
+    def __init__(self, num, dni, nombre, apellido, millas_acum):
         self.__num = num
         self.__dni = dni
         self.__nombre = nombre
         self.__apellido = apellido
         self.__millas_acum = millas_acum
 
-    def cantidadtotalmillas (self):
+    def cantidadTotalMillas(self):
         return self.__millas_acum
 
-    def __ad__(self, millas):
-        self.millas_acum = int(self.__millas_acum) + millas
-        return self.millas_acum
+    def getnum(self):
+        return int(self.__num)
 
-    def __sub__(self, canjear):
-        if canjear <= int(self.__millas_acum):
-             self.__millas_acum = int(self.__millas_acum) - canjear
-        return self.__millas_acum
+    def getmillas(self):
+        return int(self.__millas_acum)
 
-     
-    def getNumeroViajero (self):
-        return self.__num
+    def __ge__(self, otro):
+        maximo = 0
+        print("Evaluando si son mayores")
+        if int(self.__millas_acum) >= int(otro):
+            maximo = int(self.__millas_acum)
+        else:
+            maximo = int(otro)
+        return maximo
+
+    def __add__(self, otro):
+        self.__millas_acum = int(self.__millas_acum) + int(otro)
+        return str("{}, {}, {}, {}, {}").format(self.__num, self.__dni, self.__nombre, self.__apellido, self.__millas_acum)
+
+    def __sub__(self, otro):
+        self.__millas_acum = self.__millas_acum = int(self.__millas_acum) - int(otro)
+        return str("{}, {}, {}, {}, {}").format(self.__num, self.__dni, self.__nombre, self.__apellido, self.__millas_acum)
 
     def __str__(self):
-        return str(self.__num)+" "+self.__dni+" "+self.__nombre+" "+self.__apellido+" "+self.__millas_acum+" "
-    
+        return str("{},{},{},{},{}").format(self.__num, self.__dni, self.__nombre, self.__apellido, self.__millas_acum)
